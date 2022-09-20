@@ -4,7 +4,8 @@ import Die from './Die'
 
 class RollDice extends Component {
 
-	// Números de rosto passam como adereços padrão
+	// Números de rosto passam como adereços padrão,  definimos um comportamento default 
+	//para quando uma propriedade não for informada receber algum valor
 	static defaultProps = {
 		sides: ['one', 'two', 'three',
 			'four', 'five', 'six']
@@ -23,8 +24,9 @@ class RollDice extends Component {
 	roll() {
 		const { sides } = this.props
 		this.setState({
-			// Mudando o estado ao clicar
-			die1: sides[Math.floor(Math.random() * sides.length)],
+			// Mudando o estado ao clicar retorna o menor inteiro maior ou igual ao número fornecido. -  multiplicando por Math.random(). 
+			//Na verdade, multiplicamos 5 por Math.random() e, somente depois, somamos uma unidade.
+			die1: sides[Math.floor(Math.random() * 5 + 1)],
 			rolling: true,
 		
 		})
@@ -40,6 +42,9 @@ class RollDice extends Component {
 		const handleBtn = this.state.rolling ?
 			'RollDice-rolling' : ''
 		const { die1, rolling } = this.state
+	console.log(die1)
+	console.log(rolling)
+
 		return (
 			<div className='RollDice'>
 				<div className='RollDice-container'>
